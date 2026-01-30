@@ -134,6 +134,22 @@ public class Character {
 	{
 		return this.name;
 	}
+	public String GetStyle()
+	{
+		return this.Style;
+	}
+	public void SetStyle(String style)
+	{
+		this.Style = style;
+	}
+	public int GetCritical()
+	{
+		return this.CrtPct;
+	}
+	public void SetCritical(int crt)
+	{
+		this.CrtPct = crt;
+	}
 	public int GetGoldP()
 	{
 		return this.GoldP;
