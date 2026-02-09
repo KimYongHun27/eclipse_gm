@@ -3,7 +3,7 @@ package MyGame;
 public class Character {
 	private String name, Style;
 	private int MaxHealthP, HealthP;
-	private int  AttP, DefP ,CrtPct;
+	private int  AttP, DefP ,CrtPct, Speed;
 	private int MaxGoldP, GoldP;
 	private int MaxManaP, ManaP;
 	private int MaxExpP, ExpP, LevelP, ExpWeight;
@@ -19,6 +19,7 @@ public class Character {
 			Death(other);
 		}
 	}
+	
 	
 	public void Hit(Character attacker/*나를 때린 객체*/ , int dmg/*attacker의 데미지*/)
 	{
@@ -130,6 +131,10 @@ public class Character {
 	    return current;
 	}
 	
+	public boolean isFast(Character other)
+	{
+		return (Speed > other.Speed) ? true : false;
+	}
 	public String GetName()
 	{
 		return this.name;
@@ -221,13 +226,14 @@ public class Character {
 	    this.ExpWeight = Math.max(1, this.ExpP / 100);
 	}
 	
-	public Character(String name, int hp, int att, int def) {
+	public Character(String name, int hp, int att, int def, int spd) {
 	    this.name = name;
 	    this.MaxHealthP = hp;
 	    this.HealthP = hp;
 	    this.AttP = att;
 	    this.DefP = def;
 	    this.LevelP = 1;
+	    this.Speed = spd;
 	    this.MaxExpP = 100; // 초기 목표치
 	    this.SetIsAlive(true);
 	    this.refreshExpInfo();
