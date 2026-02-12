@@ -14,10 +14,6 @@ public class Character {
 	{
 		other.Hit(this, CalculateDamage(other.GetDefP()));
 		System.out.println(this.name + "의 공격! " + other.name + "에게 " + AttP + "의 피해를 입혔습니다.");
-		if(!other.GetIsAlive())
-		{
-			Death(other);
-		}
 	}
 	
 	
@@ -38,13 +34,8 @@ public class Character {
 	}
 	public void Death(Character other/*내가 죽인 객체*/) {
 		System.out.println(other.name + "사망");
-		//승리, 현재 hp 10%회복, 현재 마나 25% 회복, other가 가진 경험치를 비율에 맞게 획득, other 가 가진 골드의 90% 획득.
-		HpHeal();
-		ManaHeal();
-		AddExprience(other);
-		AddGold((int)(other.GetGold() * 0.9));
 	}
-	public void HpHeal()
+	public void applyVictoryRewardHp()
 	{
 		//승리 시에만 호출!
 		HealthP += HealthP/10;
@@ -58,7 +49,7 @@ public class Character {
 		System.out.println(name + "의 hp 회복 (" + HealthP + ")");
 	}
 	
-	public void ManaHeal()
+	public void applyVictoryRewardMp()
 	{
 		//승리 시에만 호출!
 		ManaP += ManaP/4;
@@ -135,96 +126,155 @@ public class Character {
 	{
 		return (Speed > other.Speed) ? true : false;
 	}
-	public String GetName()
-	{
-		return this.name;
-	}
-	public String GetStyle()
-	{
-		return this.Style;
-	}
-	public void SetStyle(String style)
-	{
-		this.Style = style;
-	}
-	public int GetCritical()
-	{
-		return this.CrtPct;
-	}
-	public void SetCritical(int crt)
-	{
-		this.CrtPct = crt;
-	}
-	public int GetGoldP()
-	{
-		return this.GoldP;
-	}
-	public void SetGoldP(int gold)
-	{
-		this.GoldP = gold;
-	}
-	public int GetLevelP()
-	{
-		return this.LevelP;
-	}
-	public void SetLevelP(int level)
-	{
-		this.LevelP = level;
-	}
-	public int GetHP()
-	{
-		return this.HealthP;
-	}
-	public void SetHp(int hp)
-	{
-		this.HealthP = hp;
-	}
-	public int GetDefP()
-	{
-		return this.DefP;
-	}
-	public void SetDefP(int def)
-	{
-		this.DefP = def;
-	}
-	public int GetAttP()
-	{
-		return this.AttP;
-	}
-	public void SetAttP(int att)
-	{
-		this.AttP = att;
-	}
-	public int GetGold()
-	{
-		return this.GoldP;
-	}
-	public void SetGold(int gold)
-	{
-		this.GoldP = gold;
-	}
-	public int GetExpP()
-	{
-		return this.ExpP;
-	}
-
-	public int GetExpWeight()
-	{
-		return this.ExpWeight;
-	}
-	public boolean GetIsAlive()
-	{
-		return this.isAvlive;
-	}
-	public void SetIsAlive(boolean alive)
-	{
-		this.isAvlive = alive;
-	}
 	
 	private void refreshExpInfo() {
 	    this.ExpP = this.AttP + this.DefP + this.MaxHealthP; 
 	    this.ExpWeight = Math.max(1, this.ExpP / 100);
 	}
+	
+	 String GetName()
+	{
+		return name;
+	}
+	 void SetName(String name_)
+	 {
+		 name = name_;
+	 }
+	 String GetStyle()
+	{
+		return Style;
+	}
+	 void SetStyle(String style)
+	{
+		Style = style;
+	}
+	 int GetCritical()
+	{
+		return CrtPct;
+	}
+	 void SetCritical(int crt)
+	{
+		CrtPct = crt;
+	}
+	 int GetGoldP()
+	{
+		return GoldP;
+	}
+	 void SetGoldP(int gold)
+	{
+		GoldP = gold;
+	}
+	 int GetLevelP()
+	{
+		return LevelP;
+	}
+	 void SetLevelP(int level)
+	{
+		LevelP = level;
+	}
+	 int GetHP()
+	{
+		return HealthP;
+	}
+	 void SetHp(int hp)
+	{
+		HealthP = hp;
+	}
+	 int GetDefP()
+	{
+		return DefP;
+	}
+	 void SetDefP(int def)
+	{
+		DefP = def;
+	}
+	 int GetAttP()
+	{
+		return AttP;
+	}
+	 void SetAttP(int att)
+	{
+		AttP = att;
+	}
+	 int GetExpP()
+	{
+		return ExpP;
+	}
+	 void SetExpP(int exp_) {
+		 ExpP = exp_;
+	 }
+	 int GetExpWeight()
+	{
+		return ExpWeight;
+	}
+	 void SetExpWeight(int ew_) {
+		 ExpWeight = ew_;
+	 }
+	 boolean GetIsAlive()
+	{
+		return isAvlive;
+	}
+	 void SetIsAlive(boolean alive)
+	{
+		isAvlive = alive;
+	}
+	 int GetMaxGoldP() {
+		 return MaxGoldP;
+	 }
+	 void SetMaxGoldP(int gold_) {
+		 MaxGoldP = gold_;
+	 }
+	 int GetSpeed() {
+		return Speed;
+	}
+	 void SetSpeed(int spd_) {
+		Speed = spd_;
+	}
+	 int GetMaxHP() {
+		return MaxHealthP;
+	}
+	 void SetMaxHP(int maxHp_)
+	{
+		MaxHealthP = maxHp_;
+	}
+	 int GetMana() {
+		return ManaP;
+	}
+	 void SetMana(int mana_) {
+		ManaP = mana_;
+	}
+	 int GetMaxMana() {
+		return MaxManaP;
+	}
+	 void SetMaxMana(int mana_) {
+		MaxManaP = mana_;
+	}
+	 int GetMaxExp() {
+		return MaxExpP;
+	}
+	 void SetMaxExp(int exp_)
+	{
+		MaxExpP = exp_;
+	}
+	 int GetincAtt() {
+		 return incAttP;
+	 }
+	 void SetincAtt(int att_) {
+		 incAttP = att_;
+	 }
+	 int GetincDef() {
+		 return incDefP;
+	 }
+	 void SetincDef(int def_)
+	 {
+		 incDefP = def_;
+	 }
+	 int GetincHp() {
+		 return incHealthP;
+	 }
+	 void SetincHp(int hp_) {
+		 incHealthP = hp_;
+	 }
 	
 	public Character(String name, int hp, int att, int def, int spd) {
 	    this.name = name;
